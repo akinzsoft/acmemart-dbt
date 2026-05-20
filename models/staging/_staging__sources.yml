@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: ACMEMART_DB
+    schema: BRONZE
+    description: "Raw data landed by Airbyte from Google Drive CSV files"
+    tables:
+      - name: acmemart_data
+        identifier: '"ACMEMART DATA"'
+        description: "All three source CSV files merged into one table by Airbyte"
+        columns:
+          - name: _AIRBYTE_RAW_ID
+            description: "Unique row identifier added by Airbyte"
+          - name: TRANSACTION_ID
+            description: "Transaction identifier - null for customer and product rows"
+          - name: CUSTOMER_ID
+            description: "Customer identifier"
+          - name: PRODUCT_ID
+            description: "Product identifier"
+          - name: FIRST_NAME
+            description: "Customer first name - null for transaction rows"
+          - name: PRODUCT_NAME
+            description: "Product name - null for transaction and customer rows"
+          - name: _AB_SOURCE_FILE_URL
+            description: "Source CSV filename used to identify record type"

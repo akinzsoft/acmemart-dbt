@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: "Cleaned and standardised transaction data from BRONZE"
+    columns:
+      - name: transaction_id
+        description: "Unique transaction identifier"
+        tests:
+          - unique
+          - not_null
+      - name: transaction_date
+        description: "Date of transaction in YYYY-MM-DD format"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "FK to stg_customers"
+        tests:
+          - not_null
+      - name: product_id
+        description: "FK to stg_products"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Number of units purchased - always greater than zero"
+        tests:
+          - not_null
+      - name: total_amount
+        description: "Final charged amount in GBP"
+        tests:
+          - not_null
+      - name: payment_method
+        description: "Payment method - card, cash or unknown"
+        tests:
+          - accepted_values:
+              values: ['card', 'cash', 'unknown']
+      - name: channel
+        description: "Sales channel - in-store or online"
+        tests:
+          - accepted_values:
+              values: ['in-store', 'online']
+
+  - name: stg_customers
+    description: "Cleaned and standardised customer data from BRONZE"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+      - name: email
+        description: "Customer email address"
+        tests:
+          - not_null
+      - name: loyalty_tier
+        description: "Customer loyalty tier - Bronze, Silver or Gold"
+        tests:
+          - accepted_values:
+              values: ['Bronze', 'Silver', 'Gold']
+
+  - name: stg_products
+    description: "Cleaned and standardised product data from BRONZE"
+    columns:
+      - name: product_id
+        description: "Unique product identifier"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Product display name"
+        tests:
+          - not_null
+      - name: unit_price
+        description: "Current selling price in GBP"
+        tests:
+          - not_null
