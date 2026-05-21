@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: "Sales fact table joining transactions with customer and product dimensions"
+    columns:
+      - name: transaction_id
+        description: "Unique transaction identifier"
+        tests:
+          - unique
+          - not_null
+      - name: transaction_date
+        description: "Date of transaction"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "FK to dim_customer"
+        tests:
+          - not_null
+      - name: product_id
+        description: "FK to dim_product"
+        tests:
+          - not_null
+      - name: total_amount
+        description: "Final charged amount in GBP"
+        tests:
+          - not_null
+
+  - name: dim_customer
+    description: "Customer dimension table with profile and loyalty information"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_product
+    description: "Product dimension table with pricing and margin information"
+    columns:
+      - name: product_id
+        description: "Unique product identifier"
+        tests:
+          - unique
+          - not_null

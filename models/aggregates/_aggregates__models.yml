@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: agg_sales_daily
+    description: "Daily sales aggregates by store and channel for reporting"
+    columns:
+      - name: transaction_date
+        description: "Date of sales"
+        tests:
+          - not_null
+      - name: store_id
+        description: "Store identifier"
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Total revenue for the day"
+        tests:
+          - not_null
+
+  - name: agg_store_performance
+    description: "Store performance summary across all trading dates"
+    columns:
+      - name: store_id
+        description: "Unique store identifier"
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        description: "Total revenue across all dates"
+        tests:
+          - not_null
