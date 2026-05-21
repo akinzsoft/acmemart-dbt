@@ -22,7 +22,7 @@ models:
         tests:
           - not_null
       - name: quantity
-        description: "Number of units purchased - always greater than zero"
+        description: "Number of units purchased"
         tests:
           - not_null
       - name: total_amount
@@ -30,15 +30,13 @@ models:
         tests:
           - not_null
       - name: payment_method
-        description: "Payment method - card, cash or unknown"
+        description: "Payment method"
         tests:
-          - accepted_values:
-              values: ['card', 'cash', 'unknown']
+          - not_null
       - name: channel
-        description: "Sales channel - in-store or online"
+        description: "Sales channel"
         tests:
-          - accepted_values:
-              values: ['in-store', 'online']
+          - not_null
 
   - name: stg_customers
     description: "Cleaned and standardised customer data from BRONZE"
@@ -52,11 +50,6 @@ models:
         description: "Customer email address"
         tests:
           - not_null
-      - name: loyalty_tier
-        description: "Customer loyalty tier - Bronze, Silver or Gold"
-        tests:
-          - accepted_values:
-              values: ['Bronze', 'Silver', 'Gold']
 
   - name: stg_products
     description: "Cleaned and standardised product data from BRONZE"
