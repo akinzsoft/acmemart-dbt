@@ -4,3 +4,4 @@ logs/
 .env
 *.pyc
 __pycache__/
+dbt_internal_packages/

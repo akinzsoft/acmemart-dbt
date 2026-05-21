@@ -19,10 +19,7 @@ models:
   acmemart:
     staging:
       +materialized: view
-      +schema: staging
     gold:
       +materialized: table
-      +schema: gold
     aggregates:
       +materialized: table
-      +schema: aggregates
